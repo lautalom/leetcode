@@ -51,6 +51,35 @@ public:
     }
 };
 
+//fastest
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int length = s.size();
+        int start = 0;
+        int len = 0;
+        for(int i=0; i<length; i++){
+            int left=i,right=i;
+            while(s[right]==s[right+1]) {
+                right++;
+            }
+            i=right;
+            while(left > 0 && right < length-1 && s[left-1] == s[right+1]){
+                left--;
+                right++;
+            }
+            if(right - left > len){
+                len = right - left;
+                start = left;
+            }
+        }
+        
+        return s.substr(start, len+1);
+        
+    }
+};
+
 int main()
 {
     Solution c;
